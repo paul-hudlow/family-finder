@@ -3,15 +3,16 @@ package com.hudlow.familyfinder.server.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.hudlow.familyfinder.server.FriendRegistry;
-
-import java.io.IOException;
-import java.io.Reader;
+import com.hudlow.familyfinder.server.LocationRegistry;
+import com.hudlow.familyfinder.server.data.LatLng;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Reader;
 
-public class AddFriendServlet extends HttpServlet {
+public class SetLocationServlet extends HttpServlet {
 
     private static int MAX_ATTEMPTS = 10;
     private static int TIMEOUT_MILLISECOND = 200;
@@ -45,8 +46,9 @@ public class AddFriendServlet extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             ObjectNode json = mapper.readValue(buffer.toString(), ObjectNode.class);
             String myUserId = json.get("myUserId").textValue();
-            String friendUserId = json.get("friendUserId").textValue();
-            FriendRegistry.getRegistry().addFriend(myUserId, friendUserId);
+            Float lat = json.get("lat").floatValue();
+            Float lng = json.get("lng").floatValue();
+            LocationRegistry.getRegistry().setLocation(myUserId, new LatLng(lat, lng));
 
             response.setContentType("application/json");
             response.getWriter().println("{ \"success\": true }");

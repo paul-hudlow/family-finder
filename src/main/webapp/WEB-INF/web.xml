@@ -5,20 +5,44 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-<display-name>HelloWorld Application</display-name>
-<description>
-    This is a simple web application with a source code organization
-    based on the recommendations of the Application Developer's Guide.
-</description>
+    <display-name>HelloWorld Application</display-name>
+    <description>
+        This is a simple web application with a source code organization
+        based on the recommendations of the Application Developer's Guide.
+    </description>
 
-<servlet>
-    <servlet-name>AppEngineServlet</servlet-name>
-    <servlet-class>com.hudlow.familyfinder.server.servlets.AddFriendServlet</servlet-class>
-</servlet>
+    <servlet>
+        <servlet-name>AddFriend</servlet-name>
+        <servlet-class>com.hudlow.familyfinder.server.servlets.AddFriendServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFriend</servlet-name>
+        <servlet-class>com.hudlow.familyfinder.server.servlets.RemoveFriendServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetLocation</servlet-name>
+        <servlet-class>com.hudlow.familyfinder.server.servlets.SetLocationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetLocation</servlet-name>
+        <servlet-class>com.hudlow.familyfinder.server.servlets.GetLocationServlet</servlet-class>
+    </servlet>
 
-<servlet-mapping>
-    <servlet-name>AppEngineServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
-</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFriend</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFriend</servlet-name>
+        <url-pattern>/remove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetLocation</servlet-name>
+        <url-pattern>/set</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLocation</servlet-name>
+        <url-pattern>/get</url-pattern>
+    </servlet-mapping>
 
 </web-app>
